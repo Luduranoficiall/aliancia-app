@@ -9,6 +9,7 @@
     "db:push": "npx prisma db push --schema packages/db/schema.prisma",
     "db:generate": "npx prisma generate --schema packages/db/schema.prisma"
   },
+  "packageManager": "npm@10.7.0",
   "workspaces": [
     "apps/*",
     "packages/*"
