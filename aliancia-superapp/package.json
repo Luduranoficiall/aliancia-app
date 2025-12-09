@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "start": "turbo run start --filter=web"
+    "start": "turbo run start --filter=web",
+    "db:push": "npx prisma db push --schema packages/db/schema.prisma",
+    "db:generate": "npx prisma generate --schema packages/db/schema.prisma"
   },
   "workspaces": [
     "apps/*",
