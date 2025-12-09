@@ -1,66 +1,49 @@
-import { Card } from "ui/Card";
-import { colors, radius } from "ui/theme";
+import ButtonGold from "ui/ButtonGold";
+import { CardMetal } from "ui/CardMetal";
+import { theme } from "ui/theme";
 
 export default function Home() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        backgroundColor: colors.deepBlack,
-        color: colors.white,
-        padding: "32px"
+        background: theme.colors.bgDeep,
+        padding: 40,
+        color: theme.colors.text
       }}
     >
       <h1
         style={{
-          fontSize: 42,
+          fontSize: 48,
           fontWeight: "bold",
-          background: `linear-gradient(90deg, ${colors.gold}, ${colors.goldBright})`,
+          backgroundImage: theme.colors.goldMetal,
           WebkitBackgroundClip: "text",
           color: "transparent"
         }}
       >
-        MI.A • Painel de Prosperidade
+        ALIANCI.A • Painel
       </h1>
 
       <div
         style={{
-          marginTop: 32,
+          marginTop: 40,
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: 24
         }}
       >
-        <Card>
-          <p style={{ color: colors.gold, fontSize: 14 }}>Saldo Disponível</p>
-          <h2 style={{ fontSize: 38, fontWeight: "bold", marginTop: 6 }}>
-            R$ 3.200,00
-          </h2>
-        </Card>
+        <CardMetal>
+          <h3 style={{ color: theme.colors.gold }}>Saldo</h3>
+          <p style={{ fontSize: 38 }}>R$ 3.200,00</p>
+        </CardMetal>
 
-        <Card>
-          <p style={{ color: "#00FFAA", fontSize: 14 }}>Comissões</p>
-          <h2 style={{ fontSize: 38, fontWeight: "bold", marginTop: 6 }}>
-            R$ 1.740,00
-          </h2>
-        </Card>
+        <CardMetal>
+          <h3 style={{ color: theme.colors.accent }}>Comissões</h3>
+          <p style={{ fontSize: 38 }}>R$ 1.740,00</p>
+        </CardMetal>
       </div>
 
-      <button
-        style={{
-          marginTop: 36,
-          width: "100%",
-          padding: "18px 0",
-          backgroundColor: colors.gold,
-          color: colors.black,
-          borderRadius: radius.xl,
-          fontSize: 24,
-          fontWeight: "bold",
-          border: "none"
-        }}
-      >
-        INDICAR AGORA
-      </button>
+      <ButtonGold style={{ marginTop: 50, width: "100%" }}>INDICAR AGORA</ButtonGold>
     </main>
   );
 }

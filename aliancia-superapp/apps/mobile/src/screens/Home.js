@@ -1,88 +1,50 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { theme } from "ui/theme";
 
 export default function Home() {
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: theme.colors.deepBlack }}
-      contentContainerStyle={{ padding: 24 }}
+      style={{ flex: 1, backgroundColor: theme.colors.bgDeep }}
+      contentContainerStyle={{ padding: 28 }}
     >
       <Text
         style={{
-          fontSize: 36,
+          fontSize: 42,
           fontWeight: "bold",
-          backgroundColor: "transparent",
-          color: theme.colors.gold,
-          marginBottom: 24
+          backgroundColor: theme.colors.goldMetal,
+          color: "transparent"
         }}
       >
-        MI.A — Prosperidade
+        ALIANCI.A
       </Text>
 
       <View
         style={{
-          backgroundColor: theme.colors.card,
-          borderRadius: 22,
-          borderWidth: 1,
-          borderColor: theme.colors.border,
+          marginTop: 30,
           padding: 24,
-          marginBottom: 24
+          backgroundColor: theme.colors.card,
+          borderRadius: theme.radius.xl,
+          borderColor: theme.colors.border,
+          borderWidth: 1
         }}
       >
-        <Text style={{ color: theme.colors.gold, fontSize: 16 }}>Saldo</Text>
-        <Text
-          style={{
-            color: theme.colors.text,
-            fontSize: 40,
-            fontWeight: "bold",
-            marginTop: 6
-          }}
-        >
-          R$ 3.200,00
-        </Text>
+        <Text style={{ color: theme.colors.gold }}>Saldo</Text>
+        <Text style={{ color: "#FFF", fontSize: 38 }}>R$ 3.200,00</Text>
       </View>
 
       <View
         style={{
-          backgroundColor: "rgba(0,255,170,0.15)",
-          borderRadius: 22,
-          borderWidth: 1,
-          borderColor: "#00FFAA",
+          marginTop: 20,
           padding: 24,
-          marginBottom: 32
+          backgroundColor: theme.colors.card,
+          borderRadius: theme.radius.xl,
+          borderColor: theme.colors.border,
+          borderWidth: 1
         }}
       >
-        <Text style={{ color: "#00FFAA", fontSize: 16 }}>Comissões</Text>
-        <Text
-          style={{
-            color: theme.colors.text,
-            fontSize: 40,
-            fontWeight: "bold",
-            marginTop: 6
-          }}
-        >
-          R$ 1.740,00
-        </Text>
+        <Text style={{ color: theme.colors.accent }}>Comissões</Text>
+        <Text style={{ color: "#FFF", fontSize: 38 }}>R$ 1.740,00</Text>
       </View>
-
-      <TouchableOpacity
-        style={{
-          backgroundColor: theme.colors.gold,
-          paddingVertical: 22,
-          borderRadius: 22
-        }}
-      >
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: 22,
-            fontWeight: "bold",
-            color: theme.colors.black
-          }}
-        >
-          INDICAR AGORA
-        </Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 }

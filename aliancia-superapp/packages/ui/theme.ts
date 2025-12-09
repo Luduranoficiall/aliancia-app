@@ -1,27 +1,32 @@
 export const theme = {
   colors: {
-    black: "#000000",
-    bg: "#050505",
-    deepBlack: "#050505",
-    card: "rgba(255,215,0,0.10)",
+    bg: "#000000",
+    bgDeep: "#030303",
+    gold: "#FFD700",
+    goldMetal: "linear-gradient(135deg, #FFD700, #E5C100, #FFEB74, #B8860B)",
+    card: "rgba(255,215,0,0.08)",
     border: "rgba(255,215,0,0.35)",
     text: "#FFFFFF",
-    gold: "#FFD700",
-    goldBright: "#E5C100",
+    textDim: "#CCCCCC",
     accent: "#00FFAA"
   },
   radius: {
-    xl: 26,
-    lg: 20
+    xl: 28,
+    lg: 20,
+    md: 14
+  },
+  shadow: {
+    gold: "0px 0px 25px rgba(255,215,0,0.35)",
+    soft: "0px 0px 15px rgba(0,0,0,0.35)"
   }
 };
 
 // Compatibilidade com imports existentes
 export const colors = {
   black: "#000000",
-  deepBlack: theme.colors.deepBlack,
+  deepBlack: theme.colors.bgDeep,
   gold: theme.colors.gold,
-  goldBright: theme.colors.goldBright,
+  goldBright: theme.colors.gold,
   white: theme.colors.text,
   card: theme.colors.card,
   border: theme.colors.border

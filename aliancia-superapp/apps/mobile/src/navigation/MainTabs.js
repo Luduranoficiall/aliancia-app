@@ -16,13 +16,12 @@ export default function MainTabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: theme.colors.deepBlack,
+          backgroundColor: "#000",
           borderTopColor: theme.colors.border,
-          paddingVertical: 6,
-          height: 72
+          height: 80
         },
         tabBarActiveTintColor: theme.colors.gold,
-        tabBarInactiveTintColor: "#666"
+        tabBarInactiveTintColor: "#444"
       }}
     >
       <Tab.Screen
