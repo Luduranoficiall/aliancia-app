@@ -1,47 +1,68 @@
-import { ScrollView, Text, View } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { theme } from "ui/theme";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function Perfil() {
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: theme.colors.bg }}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: theme.colors.bgDeep }}
+      contentContainerStyle={{ padding: 28 }}
+    >
+      <Animated.View entering={FadeInDown.duration(600)}>
+        <Image
+          source={{ uri: "https://i.pravatar.cc/260" }}
+          style={{
+            width: 120,
+            height: 120,
+            borderRadius: 70,
+            alignSelf: "center",
+            borderWidth: 3,
+            borderColor: theme.colors.gold
+          }}
+        />
+      </Animated.View>
+
       <Text
         style={{
-          color: theme.colors.gold,
+          marginTop: 20,
           fontSize: 32,
-          padding: 24,
+          color: theme.colors.goldText,
+          textAlign: "center",
           fontWeight: "bold"
         }}
       >
-        Seu Perfil
+        Humberto Duran
       </Text>
 
       <View
         style={{
-          backgroundColor: theme.colors.card,
-          borderRadius: 22,
-          borderWidth: 1,
-          borderColor: theme.colors.border,
+          marginTop: 40,
           padding: 24,
-          marginHorizontal: 24
+          backgroundColor: theme.colors.card,
+          borderRadius: theme.radius.xl,
+          borderColor: theme.colors.border,
+          borderWidth: 1
         }}
       >
-        <Text style={{ color: theme.colors.text, fontSize: 20 }}>Saldo</Text>
-        <Text style={{ color: theme.colors.gold, fontSize: 32, fontWeight: "bold" }}>
-          R$ 3.200,00
+        <Text style={{ color: "#fff", fontSize: 22 }}>Saldo Wallet</Text>
+        <Text style={{ color: theme.colors.gold, fontSize: 40, fontWeight: "bold" }}>
+          R$ 3.740,00
         </Text>
+      </View>
 
-        <Text style={{ color: theme.colors.text, fontSize: 20, marginTop: 20 }}>
-          Cashback
-        </Text>
-        <Text style={{ color: "#00FFAA", fontSize: 32, fontWeight: "bold" }}>
-          R$ 740,00
-        </Text>
-
-        <Text style={{ color: theme.colors.text, fontSize: 20, marginTop: 20 }}>
-          Ecodólar
-        </Text>
-        <Text style={{ color: theme.colors.goldBright, fontSize: 32, fontWeight: "bold" }}>
-          180 EC$
+      <View
+        style={{
+          marginTop: 20,
+          padding: 24,
+          backgroundColor: theme.colors.card,
+          borderRadius: theme.radius.xl,
+          borderColor: theme.colors.border,
+          borderWidth: 1
+        }}
+      >
+        <Text style={{ color: "#fff", fontSize: 22 }}>Cashback Acumulado</Text>
+        <Text style={{ color: theme.colors.accent, fontSize: 40, fontWeight: "bold" }}>
+          R$ 1.120,00
         </Text>
       </View>
     </ScrollView>

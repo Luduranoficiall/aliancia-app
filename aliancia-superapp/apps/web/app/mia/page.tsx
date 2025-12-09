@@ -3,81 +3,88 @@
 import { useState } from "react";
 import { theme } from "ui/theme";
 
-export default function MiaChat() {
-  const [chat, setChat] = useState<{ from: "user" | "mia"; text: string }[]>([]);
+type Msg = { from: "user" | "mia"; text: string };
+
+export default function Mia() {
+  const [chat, setChat] = useState<Msg[]>([]);
   const [msg, setMsg] = useState("");
 
   async function send() {
-    const res = await fetch("/api/mia", {
-      method: "POST",
-      body: msg
-    }).then((r) => r.text());
+    if (!msg) return;
+    setChat((prev) => [...prev, { from: "user", text: msg }]);
 
-    setChat([...chat, { from: "user", text: msg }, { from: "mia", text: res }]);
+    const res = await fetch("/api/mia", { method: "POST", body: msg });
+    const reader = res.body?.getReader();
+    if (!reader) return;
+
+    let full = "";
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      const chunk = new TextDecoder().decode(value);
+      full += chunk;
+      setChat((prev) => {
+        const withoutLastMia = prev.filter((_, idx) => idx !== prev.length - 1 || prev[idx].from !== "mia");
+        return [...withoutLastMia, { from: "mia", text: full }];
+      });
+    }
     setMsg("");
   }
 
   return (
     <main
       style={{
-        background: theme.colors.bg,
-        minHeight: "100vh",
-        padding: 24,
-        color: theme.colors.text
+        padding: 40,
+        background: theme.colors.bgDeep,
+        minHeight: "100vh"
       }}
     >
-      <h1 style={{ color: theme.colors.gold, fontSize: 36 }}>MI.A — IA</h1>
-
-      <div style={{ marginTop: 24, height: "70vh", overflowY: "auto" }}>
-        {chat.map((m, i) => (
-          <div
-            key={i}
-            style={{
-              marginBottom: 14,
-              padding: 14,
-              borderRadius: 18,
-              background: m.from === "user" ? "#FFD70022" : "#FFFFFF22",
-              alignSelf: m.from === "user" ? "flex-end" : "flex-start",
-              maxWidth: "80%"
-            }}
-          >
-            {m.text}
-          </div>
-        ))}
-      </div>
+      <h1 style={{ color: theme.colors.gold, fontSize: 42 }}>MI.A — Inteligência Avançada</h1>
 
       <textarea
+        style={{
+          marginTop: 30,
+          width: "100%",
+          height: 120,
+          borderRadius: 20,
+          padding: 16,
+          background: "#222",
+          color: "#fff"
+        }}
         value={msg}
         onChange={(e) => setMsg(e.target.value)}
-        placeholder="Fale com a MI.A"
-        style={{
-          marginTop: 20,
-          width: "100%",
-          height: 100,
-          background: "#222",
-          color: theme.colors.text,
-          borderRadius: 18,
-          padding: 14,
-          border: "1px solid #333"
-        }}
-      ></textarea>
+      />
 
       <button
         onClick={send}
         style={{
-          marginTop: 14,
-          width: "100%",
           padding: 20,
-          background: theme.colors.gold,
           borderRadius: 20,
-          color: theme.colors.black,
-          fontSize: 22,
-          fontWeight: "bold",
-          border: 0
+          backgroundImage: theme.colors.goldMetal,
+          color: "#000",
+          fontSize: 24,
+          marginTop: 14
         }}
       >
-        Enviar
+        ENVIAR
       </button>
+
+      <div style={{ marginTop: 40 }}>
+        {chat.map((m, i) => (
+          <p
+            key={i}
+            style={{
+              background: m.from === "mia" ? "#FFD70022" : "#111",
+              padding: 16,
+              borderRadius: 16,
+              marginBottom: 12,
+              color: "#fff"
+            }}
+          >
+            {m.text}
+          </p>
+        ))}
+      </div>
     </main>
   );
 }

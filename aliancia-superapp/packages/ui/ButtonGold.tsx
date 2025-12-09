@@ -1,6 +1,10 @@
 import type { ReactNode, CSSProperties } from "react";
 import { theme } from "./theme";
 
+const pulse = {
+  animation: "pulse 2.2s infinite"
+} as const;
+
 export default function ButtonGold({
   children,
   onClick,
@@ -15,13 +19,13 @@ export default function ButtonGold({
       onClick={onClick}
       style={{
         backgroundImage: theme.colors.goldMetal,
-        padding: "18px 32px",
-        borderRadius: theme.radius.xl,
-        border: "none",
+        padding: "20px 36px",
+        borderRadius: 30,
         color: "#000",
-        fontSize: 22,
         fontWeight: "bold",
-        boxShadow: theme.shadow.gold,
+        fontSize: 24,
+        border: "none",
+        ...pulse,
         ...style
       }}
     >

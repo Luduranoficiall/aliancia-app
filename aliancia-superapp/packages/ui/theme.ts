@@ -3,6 +3,7 @@ export const theme = {
     bg: "#000000",
     bgDeep: "#030303",
     gold: "#FFD700",
+    goldText: "#FFD700",
     goldMetal: "linear-gradient(135deg, #FFD700, #E5C100, #FFEB74, #B8860B)",
     card: "rgba(255,215,0,0.08)",
     border: "rgba(255,215,0,0.35)",
