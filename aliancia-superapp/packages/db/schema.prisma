@@ -1,0 +1,203 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// USERS / MEMBERS / ROLES
+
+model User {
+  id           String     @id @default(uuid())
+  name         String?
+  email        String     @unique
+  phone        String?
+  passwordHash String
+  avatarUrl    String?
+  role         UserRole   @default(MEMBER)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  sessions     Session[]
+  member       Member?
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+}
+
+enum UserRole {
+  MEMBER
+  LEADER
+  MANAGER
+  ADMIN
+  SUPERADMIN
+}
+
+/// MEMBERSHIP SYSTEM / REFERRALS / PLANS
+
+model Member {
+  id              String        @id @default(uuid())
+  userId          String        @unique
+  user            User          @relation(fields: [userId], references: [id])
+  referralCode    String        @unique
+  referredBy      String?
+  status          MemberStatus  @default(ACTIVE)
+  level           Int           @default(1)
+  xp              Int           @default(0)
+  planId          String
+  plan            Plan          @relation(fields: [planId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  commissions     Commission[]
+  referrals       Referral[]
+  wallet          Wallet?
+}
+
+model Referral {
+  id              String     @id @default(uuid())
+  memberId        String
+  referredId      String
+  level           Int
+  createdAt       DateTime   @default(now())
+}
+
+enum MemberStatus {
+  ACTIVE
+  PENDING
+  BLOCKED
+  CANCELLED
+}
+
+model Plan {
+  id          String    @id @default(uuid())
+  name        String
+  tier        String
+  priceCents  Int
+  cycle       String
+  createdAt   DateTime  @default(now())
+  members     Member[]
+}
+
+/// WALLET / COMMISSIONS / CASHBACK
+
+model Wallet {
+  id             String    @id @default(uuid())
+  memberId       String    @unique
+  balanceCents   Int       @default(0)
+  ecoDollarCents Int       @default(0)
+  updatedAt      DateTime  @updatedAt
+}
+
+model Commission {
+  id             String    @id @default(uuid())
+  memberId       String
+  sourceId       String
+  level          Int
+  amountCents    Int
+  status         CommissionStatus @default(PENDING)
+  createdAt      DateTime @default(now())
+}
+
+enum CommissionStatus {
+  PENDING
+  AVAILABLE
+  WITHDRAWN
+}
+
+/// BENEFITS / PARTNERS / CATALOG
+
+model Benefit {
+  id          String   @id @default(uuid())
+  name        String
+  category    String
+  partnerId   String
+  description String?
+  linkUrl     String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Partner {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String?
+  benefits  Benefit[]
+}
+
+/// EVENTS / ACADEMY / BADGES
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  startAt     DateTime
+  endAt       DateTime
+  link        String?
+  createdAt   DateTime @default(now())
+}
+
+model Badge {
+  id          String   @id @default(uuid())
+  name        String
+  iconUrl     String?
+  description String?
+  level       Int
+}
+
+/// PAYMENTS / BILLING / WEBHOOKS
+
+model Payment {
+  id            String         @id @default(uuid())
+  memberId      String
+  externalId    String?
+  amountCents   Int
+  gateway       String
+  status        PaymentStatus
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  FAILED
+}
+
+/// IA LOGS (MI.A)
+
+model AIEvent {
+  id        String   @id @default(uuid())
+  memberId  String?
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+}
+
+model Withdraw {
+  id          String   @id @default(uuid())
+  memberId    String
+  amountCents Int
+  pixKey      String
+  status      WithdrawStatus @default(PENDING)
+  createdAt   DateTime @default(now())
+}
+
+enum WithdrawStatus {
+  PENDING
+  PROCESSING
+  PAID
+}
+
+model Medal {
+  id        String   @id @default(uuid())
+  memberId  String
+  name      String
+  icon      String
+  createdAt DateTime @default(now())
+}
