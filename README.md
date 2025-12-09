@@ -1,86 +1,108 @@
-# ALIANCI.A — Ecossistema Oficial
+ALIANCI.A — SUPERAPP
+Documentação Oficial — Nível HARD PREMIUM MASTER OURO++
 
-Sistema híbrido: aplicativo web, site institucional, painel do membro, marketplace, cashback, IA e automação total.
+📘 SOBRE O PROJETO
 
-## Visão Geral
-O ALIANCI.A é um ecossistema completo para comunidade, networking, cashback, IA, marketplace e painel do membro. Pronto para produção, escalável e seguro.
+ALIANCI.A é um Superapp multiplataforma (Android, iOS e Web), projetado para:
 
-## Estrutura de Pastas
+- Construir uma comunidade ativa e próspera
+- Integrar cashback, wallet, PIX, benefícios e marketplace
+- Controlar rede de indicações inteligente (25/10/5)
+- Usar MI.A (IA integrada) como assistente oficial
+- Entregar conteúdo, evolução e prosperidade
+- Criar uma experiência premium nível fintech
+
+🛠 TECNOLOGIAS PRINCIPAIS
+
+- Next.js 14 (Web + PWA + Landing + Admin)
+- React Native + Expo (Mobile)
+- Prisma + PostgreSQL (DB)
+- Stripe / OpenPix (Pagamentos automáticos)
+- FCM Notifications
+- Docker + GitHub Actions (CI/CD)
+- Railway (API) + Vercel (Web)
+
+🔥 ARQUITETURA (HARD MODE)
 ```
-/root
- ├── backend/
- │     ├── app.py
- │     ├── requirements.txt
- │     ├── routers/
- │     ├── agent/
- │     ├── services/
- │     ├── utils/
- │     ├── config/
- │     ├── database.py
- │     ├── models.py
- │     ├── controllers/
- │     └── README.md
- ├── frontend/
- │     ├── next.config.js
- │     ├── app/
- │     ├── public/
- │     ├── components/
- │     ├── styles/
- │     ├── package.json
- │     └── README.md
- ├── .github/
- │     └── workflows/
- │            └── deploy.yml
- ├── LICENSE
- ├── README.md
- └── roadmap.md
-```
-
-## Como rodar localmente
-
-### Backend (FastAPI)
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app:app --reload
+aliancia-superapp/
+ ├── apps/
+ │    ├── web/            → Next.js 14
+ │    ├── mobile/         → Expo / React Native
+ │
+ ├── packages/
+ │    ├── api/            → Lógica backend compartilhada
+ │    ├── db/             → Prisma + migrations
+ │    ├── ui/             → Design system GOLD
+ │
+ ├── landing/             → Landing Page oficial
+ ├── .github/             → CI/CD pipelines
+ ├── Dockerfile
+ ├── docker-compose.yml
+ └── README.md
 ```
 
-### Frontend (Next.js)
-```bash
-cd frontend
+💳 PAGAMENTOS
+- Stripe (assinaturas)
+- OpenPix (PIX automático)
+- Webhooks ativam usuários e geram comissões
+
+🔔 NOTIFICAÇÕES
+- Expo Push Notifications
+- Eventos automáticos:
+  - Novo indicado
+  - Comissão liberada
+  - PIX aprovado
+  - Conteúdo novo na Academia
+  - Lembrete de reunião
+
+🧠 MI.A — ASSISTENTE IA
+- Chat em tempo real
+- Sugestões personalizadas
+- Alertas financeiros
+- Onboarding inteligente
+
+💰 COMISSÕES (25 / 10 / 5)
+- Cálculo automático
+- Registro de árvore
+- Carteira interna (wallet)
+- Saques via PIX
+
+🎨 TEMA ALIANCI.A V2 (OURO METALIZADO)
+- Ouro líquido
+- Bordas metalizadas
+- Componentes premium
+- Animações suaves
+
+📦 BUILD & DEPLOY
+WEB
+```
 npm install
-npm run dev
+npm run build
+npm start
 ```
 
-## Deploy
-- Backend: Fly.io / Railway
-- Frontend: Vercel / Fly.io
+MOBILE (APK / IPA)
+```
+eas build -p android
+eas build -p ios
+```
 
-## Variáveis de Ambiente
-- `DATABASE_URL` (backend)
-- `RAILWAY_TOKEN` (deploy opcional)
-- `VERCEL_TOKEN` (deploy opcional)
+🏦 SERVIDORES
+- Web → Vercel
+- API → Railway
+- Mobile → Expo Build Service
+- Banco → PostgreSQL (Railway/Supabase)
 
-## Funcionalidades
-- Cadastro em 3 níveis
-- Cashback multi-nível
-- IA pessoal do membro
-- Ferramentas inteligentes (AURI.A, PREDITIVI.A, IDEI.A, VERIFICA.I.)
-- Marketplace ECONOMI.A
-- Painel do membro
-- Integração WhatsApp
+🔐 SEGURANÇA
+- JWT com expiração
+- Hash de senha (bcrypt)
+- Rate limit nas rotas
+- Webhooks assinados
 
-## Checklist de Produção
-- [x] Código limpo e modular
-- [x] Logs claros e humanizados
-- [x] Tratamento de erros amigável
-- [x] Funções puras sempre que possível
-- [x] Pronto para escalar e evoluir
-- [x] CI/CD automatizado
-
-## Exemplos de Uso
-- Acesse `/docs` no backend para testar a API
-- Use o painel do membro no frontend para simular ganhos, cashback e acessar IA
-
----
-> Código limpo, modular, seguro, pronto para escalar. Qualquer dúvida, consulte os READMEs de backend e frontend.
+📈 ROADMAP
+- Gamificação avançada
+- Marketplace completo
+- Badge system hard
+- Community Feed
+- Cashback em camadas
+- Sugestões MI.A preditivas
