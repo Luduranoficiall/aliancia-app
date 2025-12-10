@@ -54,9 +54,9 @@ model Member {
   plan            Plan          @relation(fields: [planId], references: [id])
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
-  commissions     Commission[]
-  referrals       Referral[]
-  wallet          Wallet?
+  commissions     Commission[]  @relation("MemberCommissions")
+  referrals       Referral[]    @relation("MemberReferrals")
+  wallet          Wallet?       @relation("MemberWallet")
 }
 
 model Referral {
@@ -65,6 +65,8 @@ model Referral {
   referredId      String
   level           Int
   createdAt       DateTime   @default(now())
+
+  member          Member     @relation("MemberReferrals", fields: [memberId], references: [id])
 }
 
 enum MemberStatus {
@@ -92,6 +94,8 @@ model Wallet {
   balanceCents   Int       @default(0)
   ecoDollarCents Int       @default(0)
   updatedAt      DateTime  @updatedAt
+
+  member         Member    @relation("MemberWallet", fields: [memberId], references: [id])
 }
 
 model Commission {
@@ -102,6 +106,8 @@ model Commission {
   amountCents    Int
   status         CommissionStatus @default(PENDING)
   createdAt      DateTime @default(now())
+
+  member         Member    @relation("MemberCommissions", fields: [memberId], references: [id])
 }
 
 enum CommissionStatus {
@@ -121,13 +127,15 @@ model Benefit {
   linkUrl     String?
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())
+
+  partner     Partner  @relation(fields: [partnerId], references: [id])
 }
 
 model Partner {
   id        String   @id @default(uuid())
   name      String
   logoUrl   String?
-  benefits  Benefit[]
+  benefits  Benefit[] @relation("PartnerBenefits")
 }
 
 /// EVENTS / ACADEMY / BADGES
