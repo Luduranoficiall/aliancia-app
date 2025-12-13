@@ -23,6 +23,7 @@
     "ui": "file:../../packages/ui"
   },
   "devDependencies": {
+    "@types/axios": "^0.9.36",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.12.7",
