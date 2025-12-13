@@ -1,6 +1,10 @@
 import { View, Text, Image, ScrollView } from "react-native";
+import CryptoJS from "crypto-js";
 import { theme } from "ui/theme";
 import Animated, { FadeInDown } from "react-native-reanimated";
+
+// Função para criptografar dados sensíveis
+const encryptData = (data) => CryptoJS.AES.encrypt(data, process.env.CRYPTO_SECRET || "aliancia_superapp_secret").toString();
 
 export default function Perfil() {
   return (
@@ -31,7 +35,8 @@ export default function Perfil() {
           fontWeight: "bold"
         }}
       >
-        Humberto Duran
+        {/* Exemplo de uso da criptografia */}
+        {encryptData("Humberto Duran")}
       </Text>
 
       <View

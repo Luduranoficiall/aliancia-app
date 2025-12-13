@@ -1,5 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import CryptoJS from "crypto-js";
 import Animated, { SlideInRight } from "react-native-reanimated";
+
+// Função para criptografar dados sensíveis
+const encryptData = (data) => CryptoJS.AES.encrypt(data, process.env.CRYPTO_SECRET || "aliancia_superapp_secret").toString();
 
 const pages = [
   {
@@ -39,7 +43,8 @@ export default function Onboarding({ navigation }) {
             style={{ width: "90%", height: 300, borderRadius: 20, marginBottom: 30 }}
           />
           <Text style={{ color: "#FFD700", fontSize: 36, fontWeight: "bold" }}>
-            {p.title}
+            {/* Exemplo de uso da criptografia */}
+            {encryptData(p.title)}
           </Text>
           <Text style={{ color: "#ccc", fontSize: 20, marginTop: 14, textAlign: "center" }}>
             {p.desc}

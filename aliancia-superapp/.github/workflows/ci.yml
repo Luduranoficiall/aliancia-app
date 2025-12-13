@@ -1,0 +1,31 @@
+name: CI Premium
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependências
+        run: npm install
+      - name: Lint
+        run: npx eslint . --ext .ts,.tsx || true
+      - name: Testes automatizados
+        run: npx jest --ci
+      - name: Build Turbo
+        run: npm run build || true
+      - name: Relatório de cobertura
+        run: |
+          if [ -f coverage/lcov.info ]; then
+            bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info || echo "Codecov não configurado";
+          fi

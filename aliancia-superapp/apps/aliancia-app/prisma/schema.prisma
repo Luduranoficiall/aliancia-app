@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  id             String        @id @default(cuid())
+  nome           String
+  email          String        @unique
+  telefone       String?
+  cidade         String?
+  areaAtuacao    String?
+  codigoIndicacao String?
+  createdAt      DateTime      @default(now())
+
+  // Relacionamentos
+  upline         Member?       @relation("UplineRelation", fields: [uplineId], references: [id])
+  uplineId       String?
+
+  downlines      Member[]      @relation("UplineRelation")
+
+  referrals      ReferralBonus[]
+
+    transactions  Transaction[]
+    cashbacks     Cashback[]
+}
+
+model ReferralBonus {
+  id           String   @id @default(cuid())
+  level        Int
+  percentage   Float
+  memberId     String
+  recipientId  String
+  createdAt    DateTime @default(now())
+
+  member       Member   @relation(fields: [memberId], references: [id])
+}
+
+model Transaction {
+  id         String   @id @default(cuid())
+  memberId   String
+  amount     Float
+  description String
+  createdAt  DateTime @default(now())
+
+  member     Member   @relation(fields: [memberId], references: [id])
+}
+
+model Cashback {
+  id         String   @id @default(cuid())
+  memberId   String
+  partnerId  String
+  value      Float
+  createdAt  DateTime @default(now())
+
+  member     Member   @relation(fields: [memberId], references: [id])
+  partner    Partner  @relation(fields: [partnerId], references: [id])
+}
+
+model Partner {
+  id        String   @id @default(cuid())
+  name      String
+  city      String?
+  category  String?
+  offers    Offer[]
+  cashback  Cashback[]
+  createdAt DateTime @default(now())
+}
+
+model Offer {
+  id         String   @id @default(cuid())
+  partnerId  String
+  title      String
+  details    String
+  discount   Float
+  createdAt  DateTime @default(now())
+
+  partner    Partner  @relation(fields: [partnerId], references: [id])
+}

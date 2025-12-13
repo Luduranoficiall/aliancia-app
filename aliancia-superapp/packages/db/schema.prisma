@@ -128,7 +128,7 @@ model Benefit {
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())
 
-  partner     Partner  @relation(fields: [partnerId], references: [id])
+  partner     Partner  @relation("PartnerBenefits", fields: [partnerId], references: [id])
 }
 
 model Partner {

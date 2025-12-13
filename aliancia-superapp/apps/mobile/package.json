@@ -12,7 +12,7 @@
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
-    "expo": "~51.0.0",
+    "expo": "^54.0.29",
     "expo-constants": "~16.0.2",
     "expo-notifications": "^0.32.14",
     "react": "18.2.0",

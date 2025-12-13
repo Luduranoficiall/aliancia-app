@@ -6,6 +6,10 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "start": "turbo run start --filter=web",
+    "expo": "npx expo start",
+    "android": "npx expo run:android",
+    "ios": "npx expo run:ios",
+    "web": "npx expo start --web",
     "db:push": "npx prisma db push --schema packages/db/schema.prisma",
     "db:generate": "npx prisma generate --schema packages/db/schema.prisma"
   },
