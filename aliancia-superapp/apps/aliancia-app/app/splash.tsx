@@ -1,13 +1,13 @@
 import { View, Text } from "react-native";
 import Screen from "../src/components/Screen";
-import { COLORS } from "../src/theme/theme";
+import { DESIGN_SYSTEM } from "../src/theme/theme";
 
 export default function Splash() {
   return (
     <Screen>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text style={{
-          color: COLORS.gold,
+          color: DESIGN_SYSTEM.colors.gold,
           fontSize: 42,
           fontWeight: "bold",
         }}>
@@ -15,7 +15,7 @@ export default function Splash() {
         </Text>
 
         <Text style={{
-          color: COLORS.textSecondary,
+          color: DESIGN_SYSTEM.colors.textSecondary,
           fontSize: 18,
           marginTop: 10
         }}>

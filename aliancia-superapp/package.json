@@ -3,19 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "start": "turbo run start --filter=web",
-    "expo": "npx expo start",
-    "android": "npx expo run:android",
-    "ios": "npx expo run:ios",
-    "web": "npx expo start --web",
-    "db:push": "npx prisma db push --schema packages/db/schema.prisma",
-    "db:generate": "npx prisma generate --schema packages/db/schema.prisma"
+    "dev": "turbo run dev --filter=aliancia-app",
+    "build": "turbo run build --filter=aliancia-app",
+    "start": "turbo run start --filter=aliancia-app",
+    "test": "turbo run test --filter=aliancia-app"
   },
   "packageManager": "npm@10.7.0",
   "workspaces": [
-    "apps/*",
+    "apps/aliancia-app",
     "packages/*"
   ],
   "devDependencies": {

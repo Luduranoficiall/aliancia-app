@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import Screen from "../../src/components/Screen";
 import Card from "../../src/components/Card";
-import { COLORS } from "../../src/theme/theme";
+import { DESIGN_SYSTEM } from "../../src/theme/theme";
 import { calcularBeneficioIndicaI } from "../../src/utils/indicaI";
 
 export default function IndicaI() {
@@ -11,7 +11,7 @@ export default function IndicaI() {
     <Screen>
 
       <Text style={{
-        color: COLORS.gold,
+        color: DESIGN_SYSTEM.colors.gold,
         fontSize: 28,
         fontWeight: "bold",
         marginBottom: 24
@@ -20,19 +20,19 @@ export default function IndicaI() {
       </Text>
 
       <Card height={150}>
-        <Text style={{ color: COLORS.gold, fontSize: 20, fontWeight: "bold" }}>
+        <Text style={{ color: DESIGN_SYSTEM.colors.gold, fontSize: 20, fontWeight: "bold" }}>
           Seu benefício atual
         </Text>
 
         <Text style={{
-          color: COLORS.textPrimary,
+          color: DESIGN_SYSTEM.colors.textPrimary,
           fontSize: 40,
           marginTop: 10
         }}>
           {(percentual * 100).toFixed(0)}%
         </Text>
 
-        <Text style={{ color: COLORS.textSecondary }}>{descricao}</Text>
+        <Text style={{ color: DESIGN_SYSTEM.colors.textSecondary }}>{descricao}</Text>
 
         <View
           style={{

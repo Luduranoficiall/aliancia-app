@@ -1,8 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import Screen from "../../src/components/Screen";
 import { useUserStore } from "../../src/store/user";
-import { COLORS } from "../../src/theme/theme";
-import { DIAMOND_ULTRA } from "../../src/theme/diamondUltra";
+import { DESIGN_SYSTEM } from "../../src/theme/theme";
 
 export default function Profile() {
   const { user, logout } = useUserStore();
@@ -11,23 +10,23 @@ export default function Profile() {
     <Screen>
       <Text
         style={{
-          color: DIAMOND_ULTRA.diamondBlue,
+          color: DESIGN_SYSTEM.colors.diamondBlue,
           fontSize: 32,
           fontWeight: "bold",
           textShadowRadius: 20,
-          textShadowColor: DIAMOND_ULTRA.diamondBlueDeep
+          textShadowColor: DESIGN_SYSTEM.colors.diamondBlueDeep
         }}
       >
         Perfil DIAMOND ULTRA
       </Text>
       <Text style={{
-        color: COLORS.textPrimary,
+        color: DESIGN_SYSTEM.colors.textPrimary,
         fontSize: 20,
         marginTop: 20
       }}>
         {user?.email}
       </Text>
-      <Text style={{ color: COLORS.textSecondary, marginTop: 4 }}>
+      <Text style={{ color: DESIGN_SYSTEM.colors.textSecondary, marginTop: 4 }}>
         Conta Premium Master Ouro++
       </Text>
       <TouchableOpacity
@@ -37,7 +36,7 @@ export default function Profile() {
           padding: 14,
           borderRadius: 12,
           borderWidth: 1,
-          borderColor: COLORS.gold
+          borderColor: DESIGN_SYSTEM.colors.gold
         }}
       >
         <Text

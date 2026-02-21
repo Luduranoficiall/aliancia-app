@@ -9,6 +9,9 @@
   },
   "devDependencies": {
     "@types/axios": "^0.9.36",
-    "prisma": "^5.14.0"
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "prisma": "^5.14.0",
+    "ts-jest": "^29.4.6"
   }
 }

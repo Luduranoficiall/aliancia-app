@@ -24,7 +24,11 @@ export class ChatbotService {
           }
         }
       );
-      return res.data.choices?.[0]?.message?.content || "[ERRO] Resposta vazia da IA.";
+      type OpenAIResponse = {
+        choices?: { message?: { content?: string } }[];
+      };
+      const data = res.data as OpenAIResponse;
+      return data.choices?.[0]?.message?.content || "[ERRO] Resposta vazia da IA.";
     } catch (e: any) {
       return `[ERRO] Falha na IA: ${e?.message || e}`;
     }

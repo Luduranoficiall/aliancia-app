@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import DiamondUltraBackground from "../../src/components/DiamondUltraBackground";
 import DiamondUltraCard from "../../src/components/DiamondUltraCard";
 import DiamondUltraTitle from "../../src/components/DiamondUltraTitle";
-import { DIAMOND_ULTRA } from "../../src/theme/diamondUltra";
+import { DESIGN_SYSTEM } from "../../src/theme/theme";
 import { useUserStore } from "../../src/store/user";
 
 export default function Dashboard() {
@@ -26,25 +26,25 @@ export default function Dashboard() {
         <View style={{ marginTop: 40, gap: 26 }}>
           <DiamondUltraCard>
             <Text style={{
-              color: DIAMOND_ULTRA.diamondBlue,
+              color: DESIGN_SYSTEM.colors.diamondBlue,
               fontSize: 22,
               fontWeight: "bold"
             }}>
               Status Ultra
             </Text>
-            <Text style={{ color: DIAMOND_ULTRA.goldBright }}>
+            <Text style={{ color: DESIGN_SYSTEM.colors.goldBright }}>
               Você alcançou o nível máximo do ecossistema.
             </Text>
           </DiamondUltraCard>
           <DiamondUltraCard>
             <Text style={{
-              color: DIAMOND_ULTRA.diamondBlue,
+              color: DESIGN_SYSTEM.colors.diamondBlue,
               fontSize: 22,
               fontWeight: "bold"
             }}>
               Benefício Ultra
             </Text>
-            <Text style={{ color: DIAMOND_ULTRA.goldBright }}>
+            <Text style={{ color: DESIGN_SYSTEM.colors.goldBright }}>
               +10% INDICA.I — limite total desbloqueado
             </Text>
           </DiamondUltraCard>

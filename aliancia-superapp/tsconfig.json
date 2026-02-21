@@ -1,22 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "react-native",
+    "target": "ES2019",
+    "module": "commonjs",
     "strict": true,
-    "allowJs": false,
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@theme/*": ["src/theme/*"],
-      "@store/*": ["src/store/*"],
-      "@services/*": ["src/services/*"],
-      "@utils/*": ["src/utils/*"]
-    }
+    "resolveJsonModule": true
   },
-  "include": ["app", "src"]
+  "include": ["apps/aliancia-app/src"]
 }
